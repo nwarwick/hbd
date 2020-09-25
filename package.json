@@ -1,0 +1,34 @@
+{
+  "name": "hbd",
+  "version": "1.0.0",
+  "description": "A wholesome slack bot wishing everyone a happy birthday",
+  "main": "index.js",
+  "repository": "https://github.com/nwarwick/hbd.git",
+  "author": "nwarwick <nicholaswarwick@icloud.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node src/index.js",
+    "commit": "cz"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.1",
+    "@prettier/plugin-ruby": "^0.20.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
