@@ -16,15 +16,17 @@ ActiveRecord::Schema.define(version: 2020_09_25_185145) do
   enable_extension "plpgsql"
 
   create_table "teams", force: :cascade do |t|
-    t.string "name", limit: 320, null: false
-    t.string "token", limit: 320, null: false
+    t.string "domain", limit: 320, null: false
+    t.string "slack_id", limit: 320, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 320, null: false
+    t.string "slack_id", limit: 320, null: false
     t.bigint "team_id", null: false
+    t.datetime "birthday", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_users_on_team_id"
