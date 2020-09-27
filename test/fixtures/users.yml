@@ -4,7 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {
-  name: 'Test User',
-  team_id: 1
-}
+valid_user: 
+  id: 1 
+  name: 'Test User' 
+  team_id: 1 
+  slack_id: '1' 
+  birthday: '1994-06-12'
