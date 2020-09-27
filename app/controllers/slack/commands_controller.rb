@@ -3,7 +3,7 @@
 module Slack
   # Handle commands from Slack
   class CommandsController < ApplicationController
-    before_action :verify_slack_request
+    before_action :verify_slack_request, except: %i[checkup]
 
     def create
       puts "params#{params}"
@@ -12,7 +12,10 @@ module Slack
 
     def interaction
       puts "interaction: #{params}"
+    end
 
+    def checkup
+      render status: :ok, json: { message: 'Everything is fine!' }
     end
 
     private

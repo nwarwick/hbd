@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   post '/slack/command', to: 'slack/commands#create'
   post '/slack/interaction', to: 'slack/commands#interaction'
+  get '/slack/health-checkup', to: 'slack/commands#checkup'
 end
