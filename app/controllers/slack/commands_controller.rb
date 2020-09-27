@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Slack
+module Slack 
   # Handle commands from Slack
   class CommandsController < ApplicationController
     before_action :verify_slack_request, except: %i[checkup]
@@ -11,7 +11,9 @@ module Slack
     end
 
     def interaction
-      puts "interaction: #{params}"
+      json = JSON.parse(params[:payload])
+      handle_team_creation(json)
+      handle_user_creation(json)
     end
 
     def checkup
@@ -43,6 +45,32 @@ module Slack
            slack_signature
          )
         head :unauthorized
+      end
+    end
+
+    def handle_team_creation(json)
+      team_json = json['team']
+      team_slack_id = team_json['id']
+      @team_domain = team_json['domain']
+      @team = Team.find_by_slack_id(team_slack_id)
+      return unless @team.blank?
+
+      @team = Team.create!(slack_id: team_slack_id, domain: @team_domain)
+    end
+
+    def handle_user_creation(json)
+      user = json['user']
+      user_name = user['name']
+      user_slack_id = user['id']
+      if User.find_by_slack_id(@team_domain).blank?
+        User.create!(
+          slack_id: user_slack_id,
+          name: user_name,
+          team_id: @team.id,
+          birthday: Time.now + 10
+        )
+      else
+        User.update!
       end
     end
   end
