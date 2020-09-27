@@ -4,8 +4,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {
-  name: 'Test Team',
-  token: 'Test Team Token'
-}
+valid_team: 
+  id: 1
+  domain: 'Test Team'
+  slack_id: '1'
+
+# no_domain_team: 
+#   id: 2
+#   domain: 'Test Team 2'
+#   slack_id: '1'
+
+# no_slack_id_team: 
+#   id: 3
+#   domain: 'Test Team'
 
