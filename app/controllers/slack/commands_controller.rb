@@ -67,10 +67,10 @@ module Slack
           slack_id: user_slack_id,
           name: user_name,
           team_id: @team.id,
-          birthday: Time.now + 10
+          birthday: Time.now + 10 # TODO: Use date contained in the payload
         )
       else
-        User.update!
+        # TODO: Updater user's birthday
       end
     end
   end
