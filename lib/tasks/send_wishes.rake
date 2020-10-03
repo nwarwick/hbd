@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc 'Send birthday wishes'
 
 task send_wishes: :environment do

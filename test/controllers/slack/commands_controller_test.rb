@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Slack
   class CommandsControllerTest < ActionDispatch::IntegrationTest
     test 'Command post fails without slack header' do
