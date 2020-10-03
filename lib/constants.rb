@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Constants
   SLACK_COMMAND_RESPONSE = {
     "text": 'How can I help you?',
