@@ -36,7 +36,7 @@ module Slack
       user = json['user']
       user_name = user['name']
       user_slack_id = user['id']
-      if User.find_by_slack_id(@team_domain).blank?
+      if User.find_by_slack_id(user_slack_id).blank?
         User.create!(
           slack_id: user_slack_id,
           name: user_name,
