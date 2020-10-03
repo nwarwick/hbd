@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Constants
   # TODO: Update the response to display a modal along with a datepicker https://github.com/nwarwick/hbd/issues/8
   # TODO: Update the response to allow viewing of birthdays https://github.com/nwarwick/hbd/issues/9 (lower priority)
