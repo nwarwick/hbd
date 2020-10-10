@@ -6,8 +6,17 @@ module Slack
     before_action :verify_slack_request, except: %i[checkup]
 
     def create
-      puts "params#{params}"
-      render status: :ok, json: ::Constants::SLACK_COMMAND_RESPONSE
+      client = Slack::Web::Client.new(token: ENV['SLACK_BOT_TOKEN'])
+      client.auth_test
+      begin
+        client.dialog_open(
+          dialog: ::Constants::SLACK_DATEPICKER,
+          trigger_id: params['trigger_id'],
+          callback_id: 'datepicker-form'
+        )
+      rescue Slack::Web::Api::Errors::ValidationErrors => e
+        puts "Validation Error(s): #{e}"
+      end
     end
 
     def interaction
@@ -36,15 +45,17 @@ module Slack
       user = json['user']
       user_name = user['name']
       user_slack_id = user['id']
-      if User.find_by_slack_id(user_slack_id).blank?
+      birthday = json['submission']['birthday']
+      existing_user = User.find_by_slack_id(user_slack_id)
+      if existing_user.blank?
         User.create!(
           slack_id: user_slack_id,
           name: user_name,
           team_id: @team.id,
-          birthday: Time.now + 10 # TODO: Use date contained in the payload
+          birthday: birthday
         )
       else
-        # TODO: Updater user's birthday
+        existing_user.update!(birthday: birthday)
       end
     end
   end
