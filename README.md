@@ -7,3 +7,8 @@ A wholesome (or not so wholesome) slack bot wishing everyone a happy birthday.
 - bundle install
 - yarn install
 - rails db:reset
+
+## Env Variables (Slack API)
+- SECRET_KEY_BASE
+- SLACK_BOT_TOKEN
+- SIGNING_SECRET
