@@ -12,3 +12,5 @@ A wholesome (or not so wholesome) slack bot wishing everyone a happy birthday.
 - SECRET_KEY_BASE
 - SLACK_BOT_TOKEN
 - SIGNING_SECRET
+
+Note: Environment variables are added via a `.env` file in the root directory
