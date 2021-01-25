@@ -1,16 +1,28 @@
 # frozen_string_literal: true
 
 module Constants
-  # TODO: use datepicker as input to prevent invalid birthday submissions 
-  # TODO: Update the response to allow viewing of birthdays https://github.com/nwarwick/hbd/issues/9 (lower priority)
-  SLACK_DATEPICKER = {
-    "type": 'modal',
-    "callback_id": 'datepicker-form',
-    "title": { "type": 'HBD', "text": 'HBD', "emoji": true },
-    "submit": { "type": 'plain_text', "text": 'Submit', "emoji": true },
-    "close": { "type": 'plain_text', "text": 'Cancel', "emoji": true },
-    "elements": [
-      { "type": 'text', "label": 'Enter your birthday!', "name": 'birthday', "placeholder": 'YYYY-MM-DD' }
-    ]
-  }.freeze
+  SLACK_DATEPICKER = [
+    {
+      "type": 'section',
+      "block_id": 'datepicker-block',
+      "text": { "type": 'mrkdwn', "text": 'Tell me your birthday!' },
+      "accessory": {
+        "type": 'datepicker',
+        "initial_date": "1990-01-01",
+        "placeholder": {
+          "type": 'plain_text', "text": 'Select a date', "emoji": true
+        },
+        "action_id": 'datepicker-action'
+      }
+    }
+  ].freeze
+
+  SLACK_SUCCESS_MESSAGE = [
+    {
+      "type": 'section',
+      "text": {
+        "type": 'mrkdwn', "text": 'Thank you for submitting your birthday 🎉'
+      }
+    }
+  ].freeze
 end
