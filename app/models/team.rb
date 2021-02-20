@@ -5,5 +5,5 @@ class Team < ApplicationRecord
   validates :domain, presence: true
   validates :channel, presence: true
   validates :channel_id, presence: true
-  has_many :users
+  has_many :users, dependent: :destroy
 end
