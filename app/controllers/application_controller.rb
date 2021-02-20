@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   def verify_slack_request
     timestamp = request.headers['X-Slack-Request-Timestamp']
     if (Time.now.to_i - timestamp.to_i).abs > 60 * 5

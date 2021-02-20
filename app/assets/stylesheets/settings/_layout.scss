@@ -1,0 +1,24 @@
+@mixin container-spacing {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@mixin container {
+  @include container-spacing;
+  max-width: 1400px;
+}
+
+@mixin container-md {
+  @include container-spacing;
+  max-width: 900px;
+}
+
+@mixin container-sm {
+  @include container-spacing;
+  max-width: 600px;
+}
+
+@mixin container-xs {
+  @include container-spacing;
+  max-width: 460px;
+}

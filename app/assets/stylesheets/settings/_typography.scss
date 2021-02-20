@@ -1,0 +1,8 @@
+// Root font size
+html,
+body {
+  font-family: $font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  color: $base-font-colour;
+}
