@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_135328) do
+ActiveRecord::Schema.define(version: 2021_02_20_142856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2021_02_20_135328) do
     t.datetime "updated_at", null: false
     t.string "oauth_token"
     t.string "name"
+    t.string "channel"
+    t.string "channel_id"
     t.index ["slack_id"], name: "index_teams_on_slack_id", unique: true
   end
 
