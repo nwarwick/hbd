@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Slack
-   # Handle commands from Slack
+  # Handle commands from Slack
   class CommandsController < ApplicationController
     before_action :verify_slack_request, except: %i[checkup]
 
