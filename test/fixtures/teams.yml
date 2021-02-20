@@ -8,13 +8,6 @@ valid_team:
   id: 1
   domain: 'Test Team'
   slack_id: '1'
-
-# no_domain_team: 
-#   id: 2
-#   domain: 'Test Team 2'
-#   slack_id: '1'
-
-# no_slack_id_team: 
-#   id: 3
-#   domain: 'Test Team'
-
+  channel: '#general' 
+  channel_id: '1'
+  oauth_token: 'asdasdasdadasd'

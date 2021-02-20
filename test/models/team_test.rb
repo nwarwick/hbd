@@ -4,7 +4,7 @@ require 'test_helper'
 
 class TeamTest < ActiveSupport::TestCase
   def setup
-    @team = Team.new(domain: 'fwelmfsdflknwe', slack_id: 'sdfsfds')
+    @team = teams(:valid_team)
   end
 
   test 'valid team' do
@@ -18,6 +18,16 @@ class TeamTest < ActiveSupport::TestCase
 
   test 'invalid without domain' do
     @team.domain = nil
+    assert_not @team.valid?
+  end
+
+  test 'invalid without channel' do
+    @team.channel = nil
+    assert_not @team.valid?
+  end
+
+  test 'invalid without channel id' do
+    @team.channel_id = nil
     assert_not @team.valid?
   end
 end
