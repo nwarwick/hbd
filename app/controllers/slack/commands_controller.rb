@@ -6,7 +6,8 @@ module Slack
     before_action :verify_slack_request, except: %i[checkup]
 
     def create
-      client = Slack::Web::Client.new(token: ENV['SLACK_BOT_TOKEN'])
+      team = Team.find_by_slack_id(params['team_id'])
+      client = Slack::Web::Client.new(token: team.oauth_token)
       client.auth_test
       begin
         client.chat_postEphemeral(
@@ -21,7 +22,7 @@ module Slack
 
     def interaction
       json = JSON.parse(params[:payload])
-      handle_team_creation(json)
+      handle_team_update(json)
       handle_user_creation(json)
       handle_success_message(json)
     end
@@ -32,14 +33,12 @@ module Slack
 
     private
 
-    def handle_team_creation(json)
+    def handle_team_update(json)
       team_json = json['team']
       team_slack_id = team_json['id']
-      @team_domain = team_json['domain']
+      team_domain = team_json['domain']
       @team = Team.find_by_slack_id(team_slack_id)
-      return unless @team.blank?
-
-      @team = Team.create!(slack_id: team_slack_id, domain: @team_domain)
+      @team.update!(domain: team_domain)
     end
 
     def handle_user_creation(json)
@@ -61,7 +60,7 @@ module Slack
     end
 
     def handle_success_message(json)
-      client = Slack::Web::Client.new(token: ENV['SLACK_BOT_TOKEN'])
+      client = Slack::Web::Client.new(token: @team.oauth_token)
       client.auth_test
       client.chat_postEphemeral(
         user: json['user']['id'],
