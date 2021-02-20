@@ -16,11 +16,6 @@ class TeamTest < ActiveSupport::TestCase
     assert_not @team.valid?
   end
 
-  test 'invalid without domain' do
-    @team.domain = nil
-    assert_not @team.valid?
-  end
-
   test 'invalid without channel' do
     @team.channel = nil
     assert_not @team.valid?
