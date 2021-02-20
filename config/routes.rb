@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post '/slack/interaction', to: 'slack/commands#interaction'
   get '/slack/health-checkup', to: 'slack/commands#checkup'
   root to: 'home#index'
+  get '/install', to: 'home#install'
 end
