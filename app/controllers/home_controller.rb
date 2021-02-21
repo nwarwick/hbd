@@ -34,14 +34,13 @@ class HomeController < ApplicationController
 
     if team.blank?
       # Create new team
-      team =
-        Team.create!(
-          slack_id: team_slack_id,
-          name: team_name,
-          oauth_token: team_oauth_token,
-          channel: channel,
-          channel_id: channel_id
-        )
+      Team.create!(
+        slack_id: team_slack_id,
+        name: team_name,
+        oauth_token: team_oauth_token,
+        channel: channel,
+        channel_id: channel_id
+      )
     else
       # Update exisitng team (reinstall)
       team.update!(

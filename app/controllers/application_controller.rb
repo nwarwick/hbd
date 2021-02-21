@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
     sig_basestring = "v0:#{timestamp}:#{request.raw_post}"
     signature =
       'v0=' +
-        OpenSSL::HMAC.hexdigest('SHA256', ENV['SIGNING_SECRET'], sig_basestring)
+      OpenSSL::HMAC.hexdigest('SHA256', ENV['SIGNING_SECRET'], sig_basestring)
     slack_signature = request.headers['X-Slack-Signature']
 
     unless ActiveSupport::SecurityUtils.secure_compare(
-             signature,
-             slack_signature
-           )
+      signature,
+      slack_signature
+    )
       head :unauthorized
     end
   end
