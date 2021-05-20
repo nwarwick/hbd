@@ -6,7 +6,7 @@ ruby '~> 2.7.0'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.2.1'
 gem 'sass-rails', '>= 6'
 gem 'slack-ruby-client'
